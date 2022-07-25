@@ -554,6 +554,10 @@ case $1 in
 				basic_machine=ymp-cray
 				os=unicos
 				;;
+			kos)
+				basic_machine=aarch64
+				os=kos
+				;;
 			*)
 				basic_machine=$1
 				os=
@@ -1523,6 +1527,9 @@ case $os in
 	none)
 		;;
 	*-eabi)
+		;;
+	kos*)
+		os=kos
 		;;
 	*)
 		echo Invalid configuration \`"$1"\': system \`"$os"\' not recognized 1>&2

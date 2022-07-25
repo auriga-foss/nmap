@@ -65,7 +65,7 @@
  *
  * This also provides our own multiple-include protection.
  */
-#if !defined(_NET_BPF_H_) && !defined(_NET_BPF_H_INCLUDED) && !defined(_BPF_H_) && !defined(_H_BPF) && !defined(lib_pcap_bpf_h)
+#if !defined(_NET_BPF_H_) && !defined(_NET_BPF_H_INCLUDED) && !defined(_BPF_H_) && !defined(_H_BPF) && !defined(lib_pcap_bpf_h) && !defined(_POSIX1_2008_NET_BPF_H_)
 #define lib_pcap_bpf_h
 
 #include <pcap/funcattrs.h>

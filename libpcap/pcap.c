@@ -38,7 +38,7 @@
 #include <pcap-types.h>
 #ifndef _WIN32
 #include <sys/param.h>
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(__KOS__) /* TODO: we have no such file at KOS SDK as of 1.1.0.76 */
 #include <sys/file.h>
 #endif
 #include <sys/ioctl.h>
