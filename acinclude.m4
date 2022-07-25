@@ -95,7 +95,7 @@ AC_DEFUN([CHECK_IPV6_IPPROTO_RAW],
   AC_MSG_CHECKING(if AF_INET6 IPPROTO_RAW sockets include the packet header)
   # This should be replaced with a better test, if possible.
   case "$host" in
-    *-linux*)
+    *-linux* | *-kos)
       AC_DEFINE(HAVE_IPV6_IPPROTO_RAW, 1,
         [If AF_INET6 IPPROTO_RAW sockets include the packet header])
       AC_MSG_RESULT(yes)

@@ -127,6 +127,9 @@ case $maybe_os in
     os=-linux-android
     basic_machine=`echo $1 | sed 's/^\(.*\)-\([^-]*-[^-]*\)$/\1/'`-unknown
     ;;
+  kos)
+    os=-kos
+    ;;
   *)
     basic_machine=`echo $1 | sed 's/-[^-]*$//'`
     if [ $basic_machine != $1 ]
@@ -239,6 +242,9 @@ case $os in
 	-mint | -mint[0-9]*)
 		basic_machine=m68k-atari
 		os=-mint
+		;;
+	-kos)
+		os=-kos
 		;;
 esac
 
@@ -1524,6 +1530,9 @@ case $os in
 		os=-dicos
 		;;
 	-nacl*)
+		;;
+	-kos*)
+		os=-kos
 		;;
 	-none)
 		;;
