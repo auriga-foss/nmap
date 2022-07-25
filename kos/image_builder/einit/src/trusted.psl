@@ -1,0 +1,33 @@
+use nk.base._
+
+/* Declaration of entities. */
+use EDL kl.core.Core
+use EDL Einit
+
+/**
+ * This instruction enables to start up system entities by KOS kernel.
+ */
+execute
+{
+    grant()
+}
+
+error
+{
+    grant()
+}
+
+response
+{
+    grant()
+}
+
+request
+{
+    grant()
+}
+
+security
+{
+    grant()
+}

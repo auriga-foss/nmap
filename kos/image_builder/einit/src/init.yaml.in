@@ -1,0 +1,22 @@
+entities:
+
+- name: nmap.Nmap
+  env:
+    VFS_FILESYSTEM_BACKEND: client:kl.VfsRamFs
+    VFS_NETWORK_BACKEND: client:kl.VfsNet
+  args:
+    - --unprivileged
+    - -vv
+    - -dd
+    - -Pn
+    - "10.0.2.2"
+    - --max-parallelism
+    - "1"
+  connections:
+    - target: kl.VfsNet
+      id: kl.VfsNet
+    - target: kl.VfsRamFs
+      id: kl.VfsRamFs
+@INIT_Nmap_ENTITY_CONNECTIONS+@
+
+@INIT_EXTERNAL_ENTITIES@
