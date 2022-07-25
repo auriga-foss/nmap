@@ -140,6 +140,10 @@
 #include <sstream>
 #include <vector>
 
+#if defined (__KOS__)
+#include <strings.h>
+#endif
+
 /* global options */
 extern char *optarg;
 extern int optind;

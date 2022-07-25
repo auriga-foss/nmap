@@ -76,6 +76,10 @@
 #include <algorithm>
 #include <list>
 
+#if defined(__KOS__)
+#include <strings.h>
+#endif
+
 extern NmapOps o;
 
 FingerPrintDB::FingerPrintDB() : MatchPoints(NULL) {

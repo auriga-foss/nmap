@@ -64,6 +64,9 @@
 
 #include "IPv6Header.h"
 
+#if defined (__KOS__)
+#include <strings.h>
+#endif
 /******************************************************************************/
 /* CONTRUCTORS, DESTRUCTORS AND INITIALIZATION METHODS                        */
 /******************************************************************************/

@@ -72,6 +72,10 @@
 #include <list>
 #include <map>
 
+#if defined(__KOS__)
+#include <strings.h>
+#endif
+
 /* This structure is the key for looking up services in the
    port/proto -> service map. */
 struct port_spec {

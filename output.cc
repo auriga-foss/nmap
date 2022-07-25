@@ -92,6 +92,10 @@
 #include <list>
 #include <sstream>
 
+#if defined (__KOS__)
+#include <strings.h>
+#endif
+
 extern NmapOps o;
 static const char *logtypes[LOG_NUM_FILES] = LOG_NAMES;
 
