@@ -52,7 +52,7 @@ typedef unsigned __int8 u_int8_t;
 #endif
 #include <net/if_arp.h>
 
-#ifndef WIN32
+#if !defined(WIN32) && !defined(__KOS__)
 #include <netinet/ip_icmp.h>
 #endif
 
