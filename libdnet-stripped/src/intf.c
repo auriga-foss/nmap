@@ -110,11 +110,12 @@ intf_flags_to_iff(u_short flags, int iff)
 		iff |= IFF_UP;
 	else
 		iff &= ~IFF_UP;
+#if !defined(__KOS__) // KOS SDK has no that support
 	if (flags & INTF_FLAG_NOARP)
 		iff |= IFF_NOARP;
 	else
 		iff &= ~IFF_NOARP;
-	
+#endif
 	return (iff);
 }
 
@@ -129,12 +130,16 @@ intf_iff_to_flags(uint64_t iff)
 		n |= INTF_FLAG_LOOPBACK;
 	if (iff & IFF_POINTOPOINT)
 		n |= INTF_FLAG_POINTOPOINT;
+#if !defined(__KOS__) // KOS SDK has no that support
 	if (iff & IFF_NOARP)
 		n |= INTF_FLAG_NOARP;
+#endif
 	if (iff & IFF_BROADCAST)
 		n |= INTF_FLAG_BROADCAST;
+#if !defined(__KOS__) // KOS SDK has no that support
 	if (iff & IFF_MULTICAST)
 		n |= INTF_FLAG_MULTICAST;
+#endif
 #ifdef IFF_IPMP
 	/* Unset the BROADCAST and MULTICAST flags from Solaris IPMP interfaces,
 	 * otherwise _intf_set_type will think they are INTF_TYPE_ETH. */

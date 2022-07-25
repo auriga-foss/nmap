@@ -17,6 +17,7 @@ dnl Check for system type.
 dnl XXX - we do this to qualify our later feature checks, since some
 dnl systems claim to support multiple features, but are quite b0rked.
 AC_CANONICAL_HOST
+AC_CANONICAL_TARGET
 dnl XXX - spoof AC_CYGWIN
 case "$host_os" in
   *cygwin*) CYGWIN=yes;;
@@ -249,6 +250,8 @@ elif test "$ac_cv_header_sys_ndd_var_h" = yes ; then
 elif test "$ac_cv_header_sys_dlpi_h" = yes || \
      test "$ac_cv_header_sys_dlpihdr_h" = yes ; then
 	AC_LIBOBJ([eth-dlpi])
+elif test "$target_os" = "kos" ; then
+	AC_LIBOBJ([eth-kos])
 else
 	AC_LIBOBJ([eth-none])
 fi
