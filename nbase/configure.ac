@@ -54,6 +54,8 @@ dnl AC_PATH_PROG(MAKEDEPEND, makedepend)
 dnl Host specific hacks
 AC_CANONICAL_HOST
 
+AC_CANONICAL_TARGET
+
 dnl equiv to '#define inline' to 'inline', '__inline__', '__inline' or ''
 AC_C_INLINE
 
@@ -146,7 +148,12 @@ AC_TYPE_UINT32_T
 AC_TYPE_UINT64_T
 
 dnl Checks for library functions.
-AC_CHECK_FUNCS( snprintf vsnprintf nanosleep strerror strcasestr strcasecmp strncasecmp signal )
+dnl False-positive strcasestr check for KOS
+if test $target_os = "kos"; then
+        AC_CHECK_FUNCS( snprintf vsnprintf nanosleep strerror strcasecmp strncasecmp signal )
+else
+        AC_CHECK_FUNCS( snprintf vsnprintf nanosleep strerror strcasestr strcasecmp strncasecmp signal )
+fi
 
 needsnprintf=no
 AC_CHECK_FUNCS(vsnprintf snprintf asprintf asnprintf vasprintf vasnprintf,,
