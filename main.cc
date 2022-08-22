@@ -63,6 +63,7 @@
 /* $Id$ */
 
 #include <signal.h>
+#include <kos_net.h>
 
 #include "nmap.h"
 #include "NmapOps.h"
@@ -103,6 +104,12 @@ extern NmapOps o;  /* option structure */
 extern void set_program_name(const char *name);
 
 int main(int argc, char *argv[]) {
+
+#ifdef __KOS__
+    if (!wait_for_network())
+        fprintf(stderr, " wait_for_network failed\n");
+#endif
+
   /* The "real" main is nmap_main().  This function hijacks control at the
      beginning to do the following:
      1) Check the environment variable NMAP_ARGS.
