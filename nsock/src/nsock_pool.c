@@ -302,9 +302,11 @@ void nsock_library_initialize(void) {
   /* We want to make darn sure the evil SIGPIPE is ignored */
   signal(SIGPIPE, SIG_IGN);
 
+#ifndef __KOS__
   /* And we're gonna need sockets -- LOTS of sockets ... */
   res = maximize_fdlimit();
   assert(res > 7);
+#endif
 #endif
   return;
 }
