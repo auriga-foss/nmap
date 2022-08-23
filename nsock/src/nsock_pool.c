@@ -303,11 +303,19 @@ void nsock_library_initialize(void) {
   signal(SIGPIPE, SIG_IGN);
 
 #ifndef __KOS__
+#if defined (TEST_KOS_SDK) && (TEST_KOS_SDK == 1)
+#error(test and remove w/a)
+#else
+// maximize_fdlimit() use a call to getrlimit. And currently this syscall is
+// broken. This place is the only place where we use a result of getrlimit
+// So just turn of this codepath until getrlimit get healthy.
+#warning "WA: TURNED OFF CHECK DUE getrlimit BROKENESS"
+#endif
   /* And we're gonna need sockets -- LOTS of sockets ... */
   res = maximize_fdlimit();
   assert(res > 7);
-#endif
-#endif
+#endif //__KOS__
+#endif //WIN32
   return;
 }
 

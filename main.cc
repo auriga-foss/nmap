@@ -106,6 +106,14 @@ extern void set_program_name(const char *name);
 int main(int argc, char *argv[]) {
 
 #ifdef __KOS__
+#if defined (TEST_KOS_SDK) && (TEST_KOS_SDK == 1)
+#error(test and remove w/a)
+#else
+// There is a race condition between DHCPC and Nmap: Nmap can start a scan
+// before DHCPC assigned IP address. Use wait_for_network for force Nmap to
+// wait DHCPC's address assigning.
+#warning "WA: USE KOS-SPECIFIC HACK FOR NETWORK"
+#endif
     if (!wait_for_network())
         fprintf(stderr, " wait_for_network failed\n");
 #endif
