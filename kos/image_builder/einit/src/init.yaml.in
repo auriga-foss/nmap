@@ -12,6 +12,9 @@ entities:
     - "10.0.2.2"
     - --max-parallelism
     - "1"
+    - -p1-6000
+    - --script
+    - "safe and default"
   connections:
     - target: kl.VfsNet
       id: kl.VfsNet

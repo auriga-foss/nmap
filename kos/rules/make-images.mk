@@ -9,6 +9,10 @@ $(ROOTFS_DIR): $(BUILD_ROOT)/../nmap
 	@mkdir -p $@/etc
 	@echo "Copy all rootfs assets"
 	@cp -r $(BUILD_ROOT)/image_builder/resources/ramfs/* $@
+	@mkdir -p $@/usr/local/share/nmap
+	@cp -r $(BUILD_ROOT)/../nse_main.lua $@/usr/local/share/nmap
+	@cp -r $(BUILD_ROOT)/../scripts/     $@/usr/local/share/nmap
+	@cp -r $(BUILD_ROOT)/../nselib/      $@/usr/local/share/nmap
 	@cp -r $< $@
 	@echo "Done"
 
