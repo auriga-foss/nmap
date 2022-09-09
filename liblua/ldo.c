@@ -63,12 +63,14 @@
 #elif defined(LUA_USE_POSIX)				/* }{ */
 
 /* in POSIX, try _longjmp/_setjmp (more efficient) */
-/* TODO(KOS): Pending kasperskyos-nmap#7, revert when resolved:
+#if !defined(__KOS__)
+/* TODO(KOS): Pending kasperskyos-nmap#7, revert when resolved: */
 #define LUAI_THROW(L,c)		_longjmp((c)->b, 1)
 #define LUAI_TRY(L,c,a)		if (_setjmp((c)->b) == 0) { a }
-*/
+#else
 #define LUAI_THROW(L,c)		longjmp((c)->b, 1)
 #define LUAI_TRY(L,c,a)		if (setjmp((c)->b) == 0) { a }
+#endif
 #define luai_jmpbuf		jmp_buf
 
 #else							/* }{ */
