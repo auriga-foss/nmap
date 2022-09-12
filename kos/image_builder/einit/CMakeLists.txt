@@ -24,6 +24,17 @@ if (NOT "${CMAKE_SYSTEM_PROCESSOR}" MATCHES "aarch64")
      message (FATAL_ERROR "${CMAKE_SYSTEM_PROCESSOR} architecture is not supported." )
 endif ()
 
+if ("$ENV{NMAP_ARGS}" STREQUAL "")
+    message(FATAL_ERROR "no NMAP_ARGS were provided")
+else()
+    set(NMAP_ARGS_INIT_YAML "  args:")
+    separate_arguments (NMAP_ARGS_LIST UNIX_COMMAND $ENV{NMAP_ARGS})
+    foreach (ARG ${NMAP_ARGS_LIST})
+        __append_string_on_new_line(NMAP_ARGS_INIT_YAML "    - ${ARG}")
+    endforeach ()
+    message(STATUS "nmap arguments:\n" ${NMAP_ARGS_INIT_YAML})
+endif()
+
 set_target_properties (${rump_DHCPCD_ENTITY} PROPERTIES
   EXTRA_CONNECTIONS "\
   - target: kl.VfsNet

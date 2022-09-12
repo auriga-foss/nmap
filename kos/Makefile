@@ -28,13 +28,15 @@ help:
 	@echo " Makefile has following (most used) targets:"
 	@echo ""
 	@echo "  NOTE: invoking make without any target will act like 'make all'"
-	@echo "  all        - build compile and ramdisk0 for specified architecture"
-	@echo "  configure  - do NMAP configure with respect to KOS project"
-	@echo "  compile    - do compile NMAP and its' dependencies"
-	@echo "  quemubuild - do build image to be flashed and started on QEMU"
-	@echo "  realhw     - do build image to be flashed and started on real HW"
-	@echo "  qemurun    - run image in QEMU"
-	@echo "  dump-vars  - [DEBUG] dump build control variables;"
+	@echo "  all          - build compile and ramdisk0 for specified architecture"
+	@echo "  configure    - do NMAP configure with respect to KOS project"
+	@echo "  compile      - do compile NMAP and its' dependencies"
+	@echo "  quemubuild   - do build image to be flashed and started on QEMU"
+	@echo "  realhw       - do build image to be flashed and started on real HW"
+	@echo "  scan-run     - run nmap in QEMU with arguments set for nmap scanning"
+	@echo "  unittest-run - run nmap in QEMU with arguments set for nmap unittest"
+	@echo "  qemurun      - run image in QEMU manually providing NMAP_ARGS"
+	@echo "  dump-vars    - [DEBUG] dump build control variables;"
 
 .PHONY: configure
 configure:
@@ -56,6 +58,14 @@ run: clean-arch ${RAMDISK0} clean-tmp
 .PHONY: qemurun
 qemurun:
 	$(Q)$(SDK_PREFIX)/toolchain/bin/$(QEMU) $(QEMU_OPTS) -kernel $(BUILD)/einit/kos-qemu-image
+
+.PHONY: unittest-run
+unittest-run:
+	$(Q)$(MAKE) run NMAP_ARGS='-d --datadir /usr/local/share/nmap --script=unittest --script-args=unittest.run'
+
+.PHONY: scan-run
+scan-run:
+	$(Q)$(MAKE) run NMAP_ARGS='--unprivileged -vv -dd -Pn \"10.0.2.2\" --max-parallelism \"1\" -p1-6000 --script \"safe\ and\ default\"'
 
 clean-arch:
 	@echo " RM	arch-build directory for $(TARGET_ARCH)."

@@ -4,17 +4,7 @@ entities:
   env:
     VFS_FILESYSTEM_BACKEND: client:kl.VfsRamFs
     VFS_NETWORK_BACKEND: client:kl.VfsNet
-  args:
-    - --unprivileged
-    - -vv
-    - -dd
-    - -Pn
-    - "10.0.2.2"
-    - --max-parallelism
-    - "1"
-    - -p1-6000
-    - --script
-    - "safe and default"
+@NMAP_ARGS_INIT_YAML@
   connections:
     - target: kl.VfsNet
       id: kl.VfsNet
