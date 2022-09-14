@@ -162,6 +162,7 @@ local libs = {
 "xdmcp",
 "xmpp",
 "zlib",
+"zlib_test",
 }
 
 -- This script-arg is documented in the unittest script to avoid cluttering

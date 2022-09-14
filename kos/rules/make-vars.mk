@@ -49,7 +49,7 @@ CC_HOST=$(HOST)-gcc
 CCX_HOST=$(HOST)-g++
 
 # Nmap configure arguments list
-CONFIG_ARGS = --host=aarch64-kos --target=aarch64-kos --build=x86_64-linux-gnu --disable-shared --enable-static --with-libpcap=internal --with-libpcre=internal --with-nbase=internal --with-nsock=internal --without-libssh2 --without-libz --without-openssl --without-ndiff --without-zenmap --without-nmap-update
+CONFIG_ARGS = --host=aarch64-kos --target=aarch64-kos --build=x86_64-linux-gnu --disable-shared --enable-static --with-libpcap=internal --with-libpcre=internal --with-nbase=internal --with-nsock=internal --without-libssh2 --without-openssl --without-ndiff --without-zenmap --without-nmap-update
 
 # default qemu gdb port
 GDB_SERVER_PORT = 1234
