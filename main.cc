@@ -63,7 +63,17 @@
 /* $Id$ */
 
 #include <signal.h>
+#ifdef __KOS__
+#if defined (TEST_KOS_SDK) && (TEST_KOS_SDK == 1)
+#error(test and remove w/a)
+#else
+// There is a race condition between DHCPC and Nmap: Nmap can start a scan
+// before DHCPC assigned IP address. Use wait_for_network for force Nmap to
+// wait DHCPC's address assigning.
+#warning "WA: USE KOS-SPECIFIC HACK FOR NETWORK"
+#endif
 #include <kos_net.h>
+#endif
 
 #include "nmap.h"
 #include "NmapOps.h"
