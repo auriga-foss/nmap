@@ -1,7 +1,7 @@
 # TARGET_PROJECT = nmap
 
 TARGET_ARCH ?= arm64
-SDK_TYPE    ?= Buddies
+SDK_TYPE    ?= Community
 DEBUG_ENABLED ?= n
 GDB_SUPPORT   ?= y
 
@@ -19,13 +19,13 @@ endif
 ifeq ($(strip $(TARGET_ARCH)),arm64)
 TARGET       := aarch64-kos
 HOST          = x86_64-linux-gnu
-SDK_VERSION  ?= 1.1.0.91
+SDK_VERSION  ?= 1.1.0.368
 DEST_CPU      = arm64
 ARCH_CFG_ARGS =
 QEMU          = qemu-system-aarch64
 # TODO: need to figure out proper args for aarch64 and arm32
 #       qemu since at the KOS-SDK it is used as '-machine virt'
-QEMU_OPTS     = -machine vexpress-a15,secure=on -cpu cortex-a72
+QEMU_OPTS     = -smp 4 -machine vexpress-a15,secure=on -cpu cortex-a72
 endif
 
 QEMU_OPTS += -m 2048
@@ -49,7 +49,7 @@ CC_HOST=$(HOST)-gcc
 CCX_HOST=$(HOST)-g++
 
 # Nmap configure arguments list
-CONFIG_ARGS = --host=aarch64-kos --target=aarch64-kos --build=x86_64-linux-gnu --disable-shared --enable-static --with-libpcap=internal --with-libpcre=internal --with-nbase=internal --with-nsock=internal --without-libssh2 --without-openssl --without-ndiff --without-zenmap --without-nmap-update
+CONFIG_ARGS = --host=aarch64-kos --target=aarch64-kos --build=x86_64-linux-gnu --disable-shared --enable-static --with-libpcap=internal --with-libpcre=internal --with-nbase=internal --with-nsock=internal --without-libssh2 --without-openssl --without-ndiff --without-zenmap --without-nmap-update ac_cv_header_net_if_tun_h=no
 
 # default qemu gdb port
 GDB_SERVER_PORT = 1234

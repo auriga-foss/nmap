@@ -56,3 +56,5 @@ libz/configure.log
 !macosx/Makefile
 !mswin32/Makefile
 !zenmap/share/zenmap/locale/Makefile
+
+out
