@@ -57,13 +57,11 @@ realhw: image $(ROOTFS_SOURCE)/Nmap
 .PHONY: qemubuild
 qemubuild: image $(ROOTFS_SOURCE)/Nmap
 	@echo "Make QEMU image ($(QEMU))"
-	@echo "UART_OPTION: $(UART_OPTION)"
 	$(Q)mkdir -p $(BUILD) && cd $(BUILD)/ && \
 		cmake -G "Unix Makefiles" \
 		-D CMAKE_BUILD_TYPE:STRING=Debug \
 		-D CMAKE_INSTALL_PREFIX:STRING=$(INSTALL_PREFIX) \
 		-D CMAKE_TOOLCHAIN_FILE=$(SDK_PREFIX)/toolchain/share/toolchain-$(TARGET).cmake \
-		$(UART_OPTION) \
 		../ && make kos-qemu-image
 
 # image(s) clean-up rule
