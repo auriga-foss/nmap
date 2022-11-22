@@ -1,33 +1,257 @@
 use nk.base._
 
-/* Declaration of entities. */
-use EDL kl.core.Core
+/* Declaration of main system entities. */
 use EDL Einit
+use EDL kl.core.Core
+use EDL kl.core.NameServer
 
-/**
- * This instruction enables to start up system entities by KOS kernel.
- */
-execute
-{
-    grant()
-}
+/* Declaration of entities. */
+use EDL kl.VfsNet
+use EDL kl.VfsRamFs
+use EDL kl.rump.Dhcpcd
 
+/* Declaration of drivers entities. */
+use EDL kl.drivers.BSP
+use EDL kl.drivers.GPIO
+use EDL kl.drivers.RAMDisk
+
+/* Return of errors is allowed */
 error
 {
     grant()
 }
 
-response
+/**
+ * This instruction enables to start up system entities by KOS kernel.
+ */
+execute src=kl.core.Core, dst=kl.core.Core
 {
     grant()
 }
 
-request
+execute src=kl.core.Core, dst=Einit
 {
     grant()
 }
 
-security
+/**
+ * This code enables to send requests from Einit entity to KOS kernel and get
+ * responses. It makes able to use system calls by Einit.
+ */
+request src=Einit, dst=kl.core.Core
+{
+    grant()
+}
+
+response src=kl.core.Core, dst=Einit
+{
+    grant()
+}
+
+/**
+ * This instruction enables to start up and initialize non-platform entities.
+ */
+execute src=Einit
+{
+    grant()
+}
+
+/**
+ * This instruction enables to start up and initialize entities.
+ */
+
+execute src=Einit, dst=kl.VfsNet
+{
+    grant()
+}
+
+execute src=Einit, dst=kl.VfsRamFs
+{
+    grant()
+}
+
+execute src=Einit, dst=kl.drivers.BSP
+{
+    grant()
+}
+
+execute src=Einit, dst=kl.drivers.GPIO
+{
+    grant()
+}
+
+execute src=Einit, dst=kl.drivers.RAMDisk
+{
+    grant()
+}
+
+/**
+ * This code enables to send requests from NameServer entity to KOS kernel and get
+ * responses. It makes able to use system calls by NameServer.
+ */
+
+request src=kl.core.NameServer, dst=kl.core.Core
+{
+    grant()
+}
+
+response src=kl.core.Core, dst=kl.core.NameServer
+{
+    grant()
+}
+
+request dst=kl.core.NameServer
+{
+    grant()
+}
+
+response src=kl.core.NameServer
+{
+    grant()
+}
+
+security src=kl.core.NameServer
+{
+    grant()
+}
+
+/**
+ * This code enables to send requests from VfsNet entity to KOS kernel
+ * and get responses.
+ */
+
+request src=kl.VfsNet, dst=kl.core.Core
+{
+    grant()
+}
+
+response src=kl.core.Core, dst=kl.VfsNet
+{
+    grant()
+}
+
+/**
+ * This code enables to send requests from RamFs entity to KOS kernel
+ * and get responses.
+ */
+
+request src=kl.VfsRamFs, dst=kl.core.Core
+{
+    grant()
+}
+
+response src=kl.core.Core, dst=kl.VfsRamFs
+{
+    grant()
+}
+
+/**
+ * This code enables to send requests from Dhcpcd entity to KOS kernel
+ * and get responses.
+ */
+request src = kl.rump.Dhcpcd, dst = kl.core.Core
+{
+    grant()
+}
+
+response src = kl.core.Core, dst = kl.rump.Dhcpcd
+{
+    grant()
+}
+
+/**
+ * This code enables to send requests from GPIO driver to KOS kernel
+ * and get responses.
+ */
+
+request src=kl.drivers.GPIO, dst=kl.core.Core
+{
+    grant()
+}
+
+response src=kl.core.Core, dst=kl.drivers.GPIO
+{
+    grant()
+}
+
+/**
+ * This code enables to send requests from BSP driver to  KOS kernel
+ * and get responses.
+ */
+
+request src=kl.drivers.BSP, dst=kl.core.Core
+{
+    grant()
+}
+
+response src=kl.core.Core, dst=kl.drivers.BSP
+{
+    grant()
+}
+
+/**
+ * This code enables to send requests from RAMDisk driver to KOS kernel
+ * and get responses.
+ */
+request src=kl.drivers.RAMDisk, dst=kl.core.Core
+{
+    grant()
+}
+
+response src=kl.core.Core, dst=kl.drivers.RAMDisk
+{
+    grant()
+}
+
+security src=kl.drivers.RAMDisk, method=Register
+{
+    grant()
+}
+
+/**
+ * This code enables to send requests from VfsRamFs entity to RAMDisk driver
+ * and get responses.
+ */
+request src=kl.VfsNet, dst=kl.drivers.RAMDisk
+{
+    grant()
+}
+
+response src=kl.drivers.RAMDisk, dst=kl.VfsNet
+{
+    grant()
+}
+
+request src=kl.VfsRamFs, dst=kl.drivers.RAMDisk
+{
+    grant()
+}
+
+response src=kl.drivers.RAMDisk, dst=kl.VfsRamFs
+{
+    grant()
+}
+
+/**
+ * This code enables to send requests from Dhcpcd entity to VfsNet entity
+ * and get responses.
+ */
+request src = kl.rump.Dhcpcd, dst = kl.VfsNet
+{
+    grant()
+}
+
+request src = kl.rump.Dhcpcd, dst = kl.VfsRamFs
+{
+    grant()
+}
+
+response src = kl.VfsNet, dst = kl.rump.Dhcpcd
+{
+    grant()
+}
+
+response src = kl.VfsRamFs, dst = kl.rump.Dhcpcd
 {
     grant()
 }

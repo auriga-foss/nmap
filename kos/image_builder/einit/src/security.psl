@@ -1,37 +1,33 @@
 use trusted._
 
 use EDL nmap.Nmap
-use EDL kl.core.NameServer
-use EDL kl.rump.Dhcpcd
-use EDL kl.VfsRamFs
-use EDL kl.VfsNet
-use EDL kl.drivers.RAMDisk
-use EDL kl.drivers.BSP
-use EDL kl.drivers.GPIO
 
-/* Return of errors is allowed */
-error
+request src=nmap.Nmap, dst=kl.core.Core
 {
     grant()
 }
 
-/* UART */
-execute
+response src=kl.core.Core, dst=nmap.Nmap
 {
     grant()
 }
 
-request
+request src=nmap.Nmap, dst=kl.VfsNet
 {
     grant()
 }
 
-response
+response src=kl.VfsNet, dst=nmap.Nmap
 {
     grant()
 }
 
-security
+request src=nmap.Nmap, dst=kl.VfsRamFs
+{
+    grant()
+}
+
+response src=kl.VfsRamFs, dst=nmap.Nmap
 {
     grant()
 }
