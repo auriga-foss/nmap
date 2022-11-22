@@ -31,7 +31,7 @@ help:
 	@echo "  all          - build compile and ramdisk0 for specified architecture"
 	@echo "  configure    - do NMAP configure with respect to KOS project"
 	@echo "  compile      - do compile NMAP and its' dependencies"
-	@echo "  quemubuild   - do build image to be flashed and started on QEMU"
+	@echo "  qemubuild    - do build image to be flashed and started on QEMU"
 	@echo "  realhw       - do build image to be flashed and started on real HW"
 	@echo "  scan-run     - run nmap in QEMU with arguments set for nmap scanning"
 	@echo "  unittest-run - run nmap in QEMU with arguments set for nmap unittest"
