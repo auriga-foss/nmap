@@ -19,7 +19,7 @@ endif
 ifeq ($(strip $(TARGET_ARCH)),arm64)
 TARGET       := aarch64-kos
 HOST          = x86_64-linux-gnu
-SDK_VERSION  ?= 1.1.0.368
+SDK_VERSION  ?= 1.1.0.24
 DEST_CPU      = arm64
 ARCH_CFG_ARGS =
 QEMU          = qemu-system-aarch64
