@@ -1,7 +1,7 @@
 # Nmap (7.92SVN) for KasperskyOS
 This is a fork of [Nmap project](https://github.com/nmap/nmap.git) adapted to
 be used with KasperskyOS. For more information about the target OS, please refer
-to [KaspeksyOS Community Edition](https://support.kaspersky.com/help/KCE/1.1/en-US/community_edition.htm).
+to [KasperskyOS Community Edition](https://support.kaspersky.com/help/KCE/1.1/en-US/community_edition.htm).
 
 For general information on using Nmap, its features and so on, please see the
 [Nmap website](https://nmap.org/docs.html).
